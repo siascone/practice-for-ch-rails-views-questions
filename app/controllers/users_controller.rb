@@ -16,43 +16,46 @@ class UsersController < ApplicationController
         end
     end
 
-    def new
-        @user = User.new
-        render json: "You need to build an new.html.erb view to render here. Comment out line 21 in the users_controller.rb and comment in the line 22 to see a helpful error message"
-        # render :new
-    end
+    # Could leave user creation and edit forms for after Auth. Just have users 
+    # in the DB
 
-    def create
-        @user = User.new(user_params)
+    # def new
+    #     @user = User.new
+    #     render json: "You need to build an new.html.erb view to render here. Comment out line 21 in the users_controller.rb and comment in the line 22 to see a helpful error message"
+    #     # render :new
+    # end
 
-        if @user.save
-            redirect_to user_url(@user)
-        else
-            render json: @user.errors.full_messages, status: 422
-        end
-    end
+    # def create
+    #     @user = User.new(user_params)
 
-    def edit
-        @user = User.find(params[:id])
-        render json: "You need to build an edit.html.erb view to render here. Comment out line 37 in the users_controller.rb and comment in the line 38 to see a helpful error message"
-        # render :edit
-    end
+    #     if @user.save
+    #         redirect_to user_url(@user)
+    #     else
+    #         render json: @user.errors.full_messages, status: 422
+    #     end
+    # end
 
-    def update
-        @user = User.find(params[:id])
+    # def edit
+    #     @user = User.find(params[:id])
+    #     render json: "You need to build an edit.html.erb view to render here. Comment out line 37 in the users_controller.rb and comment in the line 38 to see a helpful error message"
+    #     # render :edit
+    # end
 
-        if @user.update(user_params)
-            redirect_to user_url(@user)
-        else
-            # if record not found this line wont hit
-            render json: @user.errors.full_messages, status: 422
-        end
-    end
+    # def update
+    #     @user = User.find(params[:id])
 
-    private
+    #     if @user.update(user_params)
+    #         redirect_to user_url(@user)
+    #     else
+    #         # if record not found this line wont hit
+    #         render json: @user.errors.full_messages, status: 422
+    #     end
+    # end
 
-    def user_params
-        params.require(:user).permit(:username, :email)
-    end
+    # private
+
+    # def user_params
+    #     params.require(:user).permit(:username, :email)
+    # end
 
 end

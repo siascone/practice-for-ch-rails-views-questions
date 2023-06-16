@@ -18,16 +18,20 @@ class AnswersController < ApplicationController
         end
     end
     
-    def new
-        @answer = Answer.new
-        render json: "You need to build an new.html.erb view to render here. Comment out line 23 in the users_controller.rb and comment in the line 24 to see a helpful error message"
-        # render :new
-    end
+    # Don't need this action. New Answer Form will live on Question Show Page
+    # def new 
+    #     @answer = Answer.new
+    #     render json: "You need to build an new.html.erb view to render here. Comment out line 23 in the users_controller.rb and comment in the line 24 to see a helpful error message"
+    #     # render :new
+    # end
 
     def create
         @answer = Answer.new(answer_params)
-        @answer.user_id = 9 # hardcoded for now
-        @answer.question_id = 6 # hardcoded for now
+        @answer.user_id = 9 # hardcoded for now. TODO - randomize based on users 
+                            # in DB. Could also mock login. Demo user can ask
+                            # questions and answer all but their own questions
+        @answer.question_id = 6 # hardcoded for now. TODO - pass in as hidden 
+                                # input in form from Question's show page
         if @answer.save
             redirect_to answer_url(@answer)
         else
@@ -37,7 +41,7 @@ class AnswersController < ApplicationController
 
     def edit
         @answer = Answer.find(params[:id])
-        @question = Question.find(params[:id])
+        # @question = Question.find(params[:id])
         render json: "You need to build an edit.html.erb view to render here. Comment out line 40 in the users_controller.rb and comment in the line 41 to see a helpful error message"
         # render :edit
     end
