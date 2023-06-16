@@ -44,6 +44,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             redirect_to user_url(@user)
         else
+            # if record not found this line wont hit
             render json: @user.errors.full_messages, status: 422
         end
     end

@@ -19,12 +19,14 @@ class QuestionsController < ApplicationController
     
     def new
         @question = Question.new
-        render :new
+        render json: "You need to build an new.html.erb view to render here. Comment out line 22 in the users_controller.rb and comment in the line 23 to see a helpful error message"
+        # render :new
     end
 
     def create
-        @question = Question.new(chirp_params)
-        @question.user_id = current_user.id # TODO fix this for non auth
+        @question = Question.new(question_params)
+        @question.user_id = 9 # hard coded as we have yet to impliment auth and 
+                              # current user
         if @question.save
             redirect_to question_url(@question)
         else
@@ -34,15 +36,16 @@ class QuestionsController < ApplicationController
 
     def edit
         @question = Question.find(params[:id])
-        render :edit
-
+        render json: "You need to build an edit.html.erb view to render here. Comment out line 38 in the users_controller.rb and comment in the line 39 to see a helpful error message"
+        # render :edit
     end
 
     def update
         @question = Question.find(params[:id])
-        if @question.update(chirp_params)
+        if @question.update(question_params)
             redirect_to question_url(@question)
         else
+            # if record not found this line wont hit
             render json: @question.errors.full_messages, status: 422
         end
     end
@@ -52,14 +55,15 @@ class QuestionsController < ApplicationController
         if @question.destroy
             redirect_to questions_url
         else
+            # if record not found this line wont hit
             render plain: "You can't destroy what's not there."
         end
     end
 
     private
 
-    def answer_params
-        params.require(:question).permit(:body, :user_id)
+    def question_params
+        params.require(:question).permit(:body, :subject)
     end
 
 end
