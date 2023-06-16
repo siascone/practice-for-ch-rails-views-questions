@@ -18,7 +18,8 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-        render json: "New Form to be rendered as View"
+        render json: "You need to build an new.html.erb view to render here. Comment out line 21 in the users_controller.rb and comment in the line 22 to see a helpful error message"
+        # render :new
     end
 
     def create
@@ -27,14 +28,14 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to user_url(@user)
         else
-            flash.now[:errors] = @user.errors.full_messages
-            # render :new coming soon
+            render json: @user.errors.full_messages, status: 422
         end
     end
 
     def edit
         @user = User.find(params[:id])
-        render json: "Edit Form to be rendered as View"
+        render json: "You need to build an edit.html.erb view to render here. Comment out line 37 in the users_controller.rb and comment in the line 38 to see a helpful error message"
+        # render :edit
     end
 
     def update
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)
             redirect_to user_url(@user)
         else
-        render json: @user.errors.full_messages, status: 422
+            render json: @user.errors.full_messages, status: 422
         end
     end
 

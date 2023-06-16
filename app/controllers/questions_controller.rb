@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
     
     def new
         @question = Question.new
-        render json: "New Question form to be rendered as :new view"
+        render :new
     end
 
     def create
@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
 
     def edit
         @question = Question.find(params[:id])
-        render json: "Edit form to be rendered as :edit view"
+        render :edit
 
     end
 

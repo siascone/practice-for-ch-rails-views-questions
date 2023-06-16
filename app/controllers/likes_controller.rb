@@ -2,11 +2,14 @@ class LikesController < ApplicationController
 
     def create
         @like = Like.new
-        @like.user_id = current_user.id
+        @like.user_id = 9 # hard coded as we have yet to impliment auth and 
+                          # current user
         @like.answer_id = params[:id]
+
         unless @like.save
-            flash[:errors] = @like.errors.full_messages
+            render json: @like.errors.full_messages, status: 422
         end
+
         redirect_to answer_url(params[:id])
     end
 
