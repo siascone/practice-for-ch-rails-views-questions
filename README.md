@@ -1,9 +1,9 @@
 # Views Questions
 
-1. Quesations Index
+1. Questions Index
 2. Questions Show
-    - update Index with links to show
-    - create questions partial and update index and show
+    - update Index with links to Show pages
+    - create questions partial and update Index and Show views to use partial
 3. Questions New
 4. Questions Edit
 5. Questions Delete
@@ -11,5 +11,5 @@
 
 6. Bonus: Create Users Show with index of specific user questions
     - link to questions show
-    - possible refactor to partial for quetions index
+    - possible refactor to partial for Questions Index
 
