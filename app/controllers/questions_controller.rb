@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
     def index
+        debugger
         @questions = if params[:user_id]
                         Question.where(user_id: params[:user_id])
                     else

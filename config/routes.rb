@@ -6,11 +6,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :questions, only: [:index]
-    resources :answers, only: [:index]
   end
 
   resources :questions
-  resources :answers
-  resources :likes, only: [:create, :destroy]
 
 end

@@ -15,16 +15,4 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :Question 
 
-    has_many :answers, 
-        foreign_key: :user_id,
-        class_name: :Answer 
-
-    has_many :likes,
-        foreign_key: :user_id,
-        class_name: :Like
-
-    has_many :liked_answers,
-        through: :likes,
-        source: :answer
-
 end
