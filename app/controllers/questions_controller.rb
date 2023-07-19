@@ -1,11 +1,6 @@
 class QuestionsController < ApplicationController
     def index
-        debugger
-        @questions = if params[:user_id]
-                        Question.where(user_id: params[:user_id])
-                    else
-                        Question.all
-                    end
+        @questions = Question.all
         render json: @questions
     end
 
@@ -27,8 +22,7 @@ class QuestionsController < ApplicationController
     def create
         @question = Question.new(question_params)
         @question.user_id = 9 # hard coded as we have yet to impliment auth and 
-                              # current user TODO - randomize based on users in 
-                              # DB
+                              # current user
         if @question.save
             redirect_to question_url(@question)
         else
@@ -43,21 +37,19 @@ class QuestionsController < ApplicationController
     end
 
     def update
-        @question = Question.find(params[:id])
+        @question = Question.find_by(id: params[:id])
         if @question.update(question_params)
             redirect_to question_url(@question)
         else
-            # if record not found this line wont hit
             render json: @question.errors.full_messages, status: 422
         end
     end
 
     def destroy
-        @question = Question.find(params[:id])
+        @question = Question.find_by(id: params[:id])
         if @question.destroy
             redirect_to questions_url
         else
-            # if record not found this line wont hit
             render plain: "You can't destroy what's not there."
         end
     end
