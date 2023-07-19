@@ -1,24 +1,12 @@
-# README
+# Views Questions
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Quesations Index
+    - link to questions show
+2. Questions Show
+3. Questions New
+4. Questions Edit
+5. Questions Delete
+    - Update Show with the delete link
 
-Things you may want to cover:
+6. Bonus: Users Show with index of specific user questions
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

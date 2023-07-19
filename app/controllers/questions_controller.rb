@@ -21,8 +21,8 @@ class QuestionsController < ApplicationController
 
     def create
         @question = Question.new(question_params)
-        @question.user_id = 9 # hard coded as we have yet to impliment auth and 
-                              # current user
+        @question.user_id = (1..9).to_a.sample # hard coded random user from DB
+
         if @question.save
             redirect_to question_url(@question)
         else
