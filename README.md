@@ -4,10 +4,11 @@ This project asks you to build views for a questions forum.
 
 ## Learning Goals
 By the end of this project, you should be able to
-* Build Rails views for `index`, `show`, `new`, `edit`, and `delete` 
-    - Display class instance attributes as values of HTML elements
-    - Use a hidden field to set a form's method and action
-    - Use `form` and `input` HTML elements
+* Build Rails views for `index`, `show`, `new`, `edit`, and `destroy` 
+* Display class instance attributes as values of HTML elements
+* Use a hidden input to set a form's method
+* Use `form` and `input` HTML elements
+* Create and use partials
 
 ## Getting Started
 
