@@ -58,9 +58,23 @@ will have noted from your review of the `questions_controller.rb`, you have
 access to an instance variable of `@questions`. `@questions` has all of the 
 question data you need to render an index of all questions.
 
-1. Give your index an h1 of `Questions Index`
+1. Give your `index.html.erb` an h1 of `Questions Index`
 
 2. Create an unordered list of questions. Each question should include:
-    - An `h1` of the question's `subject`
+    - An `h2` of the question's `subject`
     - A `p` of the question's body
 
+## The Show View
+
+Create a view of `show.html.erb` in `app/views/questions`. Similar to the 
+`questions_controller.rb` `index` action, the `show` action has an instance
+varible of `@question`. Utilize this to build out your `show.html.erb`
+
+1. Create an `h1` of the question's `subject`
+2. Create a `p` of the question's `body`
+3. Add a `label` for `Author` to a `p` of the username for the user who asked 
+    the question. (Hint: use the question's associations)
+4. Add a link back to the `index.html.erb`
+5. Return to your `index.html.erb` and add a link to a questions' show page
+
+Once you have completed the above call an instructor over for a code review.
