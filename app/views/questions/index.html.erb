@@ -1,0 +1,10 @@
+<h2>Questions Index</h2>
+
+<ul>
+    <% @questions.each do |question| %>
+        <li>
+            <%= render 'question', question: question %>
+            <a href="<%= question_url(question.id) %>">View Question</a>
+        </li>
+    <% end%>
+</ul>

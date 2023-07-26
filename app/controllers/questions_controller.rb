@@ -1,13 +1,15 @@
 class QuestionsController < ApplicationController
     def index
         @questions = Question.all
-        render json: @questions
+        # render json: @questions
+        render :index
     end
 
     def show
         @question = Question.find(params[:id])
         if @question
-            render json: @question
+            # render json: @question
+            render :show
         else
             render json: @question.errors.full_messages, status: 404
         end
@@ -15,14 +17,14 @@ class QuestionsController < ApplicationController
     
     def new
         @question = Question.new
-        render json: "You need to build an new.html.erb view to render here. Comment out line 22 in the users_controller.rb and comment in the line 23 to see a helpful error message"
-        # render :new
+        # render json: "You need to build an new.html.erb view to render here. Comment out line 22 in the users_controller.rb and comment in the line 23 to see a helpful error message"
+        render :new
     end
 
     def create
         @question = Question.new(question_params)
         @question.user_id = (1..9).to_a.sample # hard coded random user from DB
-
+        
         if @question.save
             redirect_to question_url(@question)
         else
@@ -32,8 +34,8 @@ class QuestionsController < ApplicationController
 
     def edit
         @question = Question.find(params[:id])
-        render json: "You need to build an edit.html.erb view to render here. Comment out line 38 in the users_controller.rb and comment in the line 39 to see a helpful error message"
-        # render :edit
+        # render json: "You need to build an edit.html.erb view to render here. Comment out line 38 in the users_controller.rb and comment in the line 39 to see a helpful error message"
+        render :edit
     end
 
     def update

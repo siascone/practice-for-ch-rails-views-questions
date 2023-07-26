@@ -1,0 +1,17 @@
+<h2>Question Show Page</h2>
+
+<div>
+    <%= render 'question', question: @question %>
+</div>
+
+<p>Asker: <%= @question.user.username %></p>
+
+<a href="<%= edit_question_url(@question) %>">Edit Question</a>
+<br>
+<a href="<%= questions_url %>">Questions Index</a>
+
+<form action="<%= question_url(@question) %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+
+    <input type="submit" value="Delete Question">
+</form>

@@ -1,0 +1,14 @@
+<h2>Ask a Question</h2>
+
+<form action="<%= questions_url %>" method="POST">
+
+    <label>Subject:
+        <input type="text" name="question[subject]" value=<%= @question.subject %>>
+    </label>
+
+    <label>body:
+        <input type="text" name="question[body]" value=<%= @question.body %> >
+    </label>
+
+    <input type="submit" value="Ask Question">
+</form>
