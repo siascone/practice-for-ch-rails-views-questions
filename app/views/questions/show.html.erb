@@ -4,7 +4,7 @@
     <%= render 'question', question: @question %>
 </div>
 
-<p>Asker: <%= @question.user.username %></p>
+<p>Asker: <a href="<%= user_url(@question.user.id) %>"><%= @question.user.username %></a></p>
 
 <a href="<%= edit_question_url(@question) %>">Edit Question</a>
 <br>

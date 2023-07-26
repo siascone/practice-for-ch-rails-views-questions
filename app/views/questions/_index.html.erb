@@ -1,0 +1,9 @@
+
+<ul>
+    <% questions.each do |question| %>
+        <li>
+            <%= render "questions/question", question: question %>
+            <a href="<%= question_url(question.id) %>">View Question</a>
+        </li>
+    <% end %>
+</ul>

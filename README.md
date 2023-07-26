@@ -186,6 +186,9 @@ review.
      the user's `username`.
 2. Add a `ul` of questions asked by a user. (Hint: think associations).
    - Be sure to add a link for each question to the question's `show` page.
+4. Add a link to the questions index.
+5. Return to `questions/show.html.erb` and convert the Asker's username to an
+   `a` tag that redirects to the user's show page.
 3. Once you have the above working consider how you might create an 
    `_index.html.erb` partial to be utilized by both the questions' 
    `index.html.erb` and your new user's `show.html.erb`.

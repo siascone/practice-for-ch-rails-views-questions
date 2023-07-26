@@ -10,7 +10,8 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
 
         if @user
-            render json: @user
+            # render json: @user
+            render :show
         else
             render json: @user.errors.full_messages, status: 404
         end
