@@ -1,15 +1,5 @@
 # QuestionsQueue
 
-4. Questions Edit
-5. Questions Delete
-    - Update Show with the delete link
-
-6. Bonus: Create Users Show with index of specific user questions
-    - link to questions show
-    - possible refactor to partial for Questions Index
-
-# QuestionsQueue
-
 This project asks you to build views for a questions forum.
 
 ## Learning Goals
@@ -61,12 +51,10 @@ access to an instance variable of `@questions`. `@questions` has all of the
 question data you need to render an index of all questions.
 
 1. Give your `index.html.erb` an `h2` of `Questions Index`
-
 2. Create an unordered list of questions. Each question should include:
     - An `h3` of the question's `subject`
     - A `p` of the question's body
-
-3. Update the `questions_controller.rb` `index` action to render the `:index` 
+3. Update the `questions#index` action to render the `:index` 
     view.
     - ex: 
     ```rb
@@ -80,47 +68,117 @@ question data you need to render an index of all questions.
 ## The Show View
 
 Create a view of `show.html.erb` in `app/views/questions`. Similar to the 
-`questions_controller.rb` `index` action, the `show` action has an instance
+`questions#index` action, the `questions#show` action has an instance
 varible of `@question`. Utilize this to build out your `show.html.erb`
 
 1. Create an `h2` of the question's `subject`
 2. Create a `p` of the question's `body`
 3. Add a `label` for `Author` to a `p` of the username for the user who asked 
-    the question. (Hint: use the question's associations)
+   the question. (Hint: use the question's associations)
 4. Add a link back to the `index.html.erb`
-5. Update the `questions_controller.rb` `show` action to render the `:show` view
-6. Return to your `index.html.erb` and add a link to a questions' show page
+5. Update the `questions#show` action to render the `:show` view
+6. Return to `index.html.erb` and add a link to a question's show page
 7. Create a `_question.html.erb` partial to dry up the duplicate question code
     in your `show.html.erb` and `index.html.erb`
 
 Once you have completed the above call an instructor over for a code review.
 
-## The New Question Form
+## The New Question Form View
 
 Create a view of `new.html.erb` in `app/views/questions`. With this view you 
-will be making an HTML `form` that accepts user input for a questions `subject`
-and `body`. Upon submission of this form the `questions_controller.rb` action of
-`create` will be invoked and should add the submitted question to the database.
+will be making a HTML `form` that accepts user input for a questions `subject`
+and `body`. Upon submission of this form the `questions#create` action will be invoked and should add the submitted question to the database.
 
-1. Create an `h2` of `Ask a Question`
-2. Create an html `form` element
+1. Create an `h2` of `Ask a Question`.
+2. Create a HTML `form` element:
     - Set the action equal to the Rails URL Helper method for the route 
-      associated with the `questions_controller.rb` `create` action
-    - Set the method to `POST`
+      associated with the `questions#create` action.
+    - Set the method to `POST`.
 3. Create a `label` and `input` for `Subject:` and `Body:`
-    - Set the name of each input to follow the expected parameter format
-        - See `questions_params` in the `questions_controller.rb` file
-        - ex: `name="questions[subject]"`
+    - Set the name of each input to follow the expected parameter format:
+        - See `#questions_params` in the `questions_controller.rb` file.
+        - ex: `name="questions[subject]"`.
     - Set the value of each input to the corresponding values of the placeholder
-      `@question` instance variable created in the `questions_controller` `new` 
-      action
-4. Add a submit `button` with the value of `Ask Question`
-5. Update the `questions_controller.rb` `new` action to render the `:new` view
+      `@question` instance variable created in the `questions#new` 
+      action.
+4. Add a `button` of type `submit` with the value of `Ask Question`.
+5. Update the `questions#new` action to render the `:new` view.
 6. In `application.html.erb`, below the heading in the body add an `a` to the 
-    `new` view
-7. Visit `localhost:3000` and test out your new form. Upon submission you should
-   be redirected to the show page of your submitted question. 
+   `new` view.
+7. Visit `localhost:3000/questions/new` and test out your new form. Upon
+   submission you should be redirected to the show page of your submitted
+   question. 
 
-## Edit an existing question
+## The Edit Question Form View
 
-Create a view of `edit.html.erb`
+Create a view of `edit.html.erb` in `app/views/questions`. With this form you 
+will be creating a way for a user to update the values of an existing question 
+(i.e. `subject` and `body`). 
+
+As you have yet to learn the Rails Auth pattern this app does not restrict the 
+editability of a question to that of the user who authored the question. As a 
+result all questions are currently editable at all times. Next week you will learn how to add these kinds restrictions.
+
+1. Create a `h2` of `Edit this question`.
+2. Create an HTML `form` element.
+    - Set the action equal to the Rails URL Helper method for the route 
+      associated with the `questions#update` action.
+    - Set the method to `POST` or `GET`.
+3. As this form requiers a HTML method of `PATCH` and HTML forms can only accept
+   methods of `POST` or `GET` you will need to add a hidden input to update the
+   method.
+   - inside the form add the following HTML hidden input:
+   ```HTML
+        <input type="hidden" name="_method" value="PATCH" />
+   ```
+4. Add a `label` and `input` for `Subject:` and `Body:`
+    - Make sure the input's values are set to the value of the question being 
+      edited. Check the `questions#edit` action to see what instance variable is
+      accessible and use that to retreive the corresponding values.
+    - Don't forget to set the name attribute of the inputs with the expected
+      paramerter format. 
+5. Add a `button` of type `submit` with the value of `Edit Question`.
+6. Return to `show.html.erb` and add a link to a question's edit from page.
+7. Update `questions#edit` to render the `:edit` view.
+8. Visit `localhost:3000/questions/1/edit` and test out your new edit form. Upon 
+   submission you should be redirected to the updated question's show page.
+
+## Deleting a Question
+
+In order to delete a question you will be adding a form to the existing question
+`show` page. You will not be making a seperate view to delete a question.
+
+This form will be less involved than the `new` and `edit` forms as it is only 
+concerned with the removal of a question and therefore does not need inputs for
+`Subject` nor `Body`. As long as the form has the correct `@question.id` you 
+should be able to successfully remove a question. 
+
+1. At the bottom of your `show.html.erb` view add a HTML `form` element
+    - Set the action equal to the Rails URL Helper method for the route 
+      associated with the `questions#destroy` action.
+    - Set the method to `POST` or `GET`.
+2. Similar to the `edit` form, the `delete` form requiers a HTML method other 
+   than `POST` or `GET`. 
+   - inside the form add a hidden input that sets the form's method to `DELETE`
+3. Add a `button` of type `submit` with the value of `Delete Question`.
+4. Visit `localhost:3000` and go to a question show page to test out your new
+   delete button.
+
+Similar to the editability of a questions all questions can be deleted at any 
+time. Again you will learn how to restrict this functionality next week.
+
+Once you have completed the above work call an instructor over for a code 
+review.
+
+## BONUS: Create a Users Show with an index of specific user questions
+1. Review the work you did to create the question's `show` page and apply the 
+   same approach for a user. 
+   - The user's `show.html.erb` should live in `app/views/users`.
+   - Besure to add an HTML element indicating what page this is and another for
+     the user's `username`.
+2. Add a `ul` of questions asked by a user. (Hint: think associations).
+   - Be sure to add a link for each question to the question's `show` page.
+3. Once you have the above working consider how you might create an 
+   `_index.html.erb` partial to be utilized by both the questions' 
+   `index.html.erb` and your new user's `show.html.erb`.
+4. Visit `localhost:3000/users/1 and test our your new page!
