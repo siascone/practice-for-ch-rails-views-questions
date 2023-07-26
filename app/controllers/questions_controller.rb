@@ -16,7 +16,6 @@ class QuestionsController < ApplicationController
     def new
         @question = Question.new
         render json: "You need to build an new.html.erb view to render here. Comment out line 22 in the users_controller.rb and comment in the line 23 to see a helpful error message"
-        # render :new
     end
 
     def create
@@ -33,7 +32,6 @@ class QuestionsController < ApplicationController
     def edit
         @question = Question.find(params[:id])
         render json: "You need to build an edit.html.erb view to render here. Comment out line 38 in the users_controller.rb and comment in the line 39 to see a helpful error message"
-        # render :edit
     end
 
     def update
