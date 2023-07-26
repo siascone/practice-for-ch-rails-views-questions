@@ -71,15 +71,17 @@ Create a view of `show.html.erb` in `app/views/questions`. Similar to the
 `questions#index` action, the `questions#show` action has an instance
 varible of `@question`. Utilize this to build out your `show.html.erb`
 
-1. Create an `h2` of the question's `subject`
-2. Create a `p` of the question's `body`
-3. Add a `label` for `Author` to a `p` of the username for the user who asked 
+1. Create a `h2` of `Question Show Page`
+2. Create a container `div` to house the question details:
+   - Add a `h3` of the question's `subject`.
+   - Add a `p` of the question's `body`.
+3. Add a `p` for `Asker:` and list the username for the user who asked 
    the question. (Hint: use the question's associations)
 4. Add a link back to the `index.html.erb`
 5. Update the `questions#show` action to render the `:show` view
 6. Return to `index.html.erb` and add a link to a question's show page
-7. Create a `_question.html.erb` partial to dry up the duplicate question code
-    in your `show.html.erb` and `index.html.erb`
+7. Create a `_question.html.erb` partial to dry up the duplicate question detail
+   code in your `show.html.erb` and `index.html.erb`
 
 Once you have completed the above call an instructor over for a code review.
 
@@ -101,7 +103,7 @@ and `body`. Upon submission of this form the `questions#create` action will be i
     - Set the value of each input to the corresponding values of the placeholder
       `@question` instance variable created in the `questions#new` 
       action.
-4. Add a `button` of type `submit` with the value of `Ask Question`.
+4. Add a `input` of type `submit` with the value of `Ask Question`.
 5. Update the `questions#new` action to render the `:new` view.
 6. In `application.html.erb`, below the heading in the body add an `a` to the 
    `new` view.
@@ -119,7 +121,7 @@ As you have yet to learn the Rails Auth pattern this app does not restrict the
 editability of a question to that of the user who authored the question. As a 
 result all questions are currently editable at all times. Next week you will learn how to add these kinds restrictions.
 
-1. Create a `h2` of `Edit this question`.
+1. Create a `h2` of `Edit This Question`.
 2. Create an HTML `form` element.
     - Set the action equal to the Rails URL Helper method for the route 
       associated with the `questions#update` action.
@@ -137,9 +139,13 @@ result all questions are currently editable at all times. Next week you will lea
       accessible and use that to retreive the corresponding values.
     - Don't forget to set the name attribute of the inputs with the expected
       paramerter format. 
-5. Add a `button` of type `submit` with the value of `Edit Question`.
-6. Return to `show.html.erb` and add a link to a question's edit from page.
-7. Update `questions#edit` to render the `:edit` view.
+5. Add a `input` of type `submit` with the value of `Edit Question`.
+6. Update `questions#edit` to render the `:edit` view.
+7. Return to `show.html.erb` and add a link to a question's edit from page above
+   the questions index link.
+   - NOTE: stacked `a` tags will render side by side as the `a` tag
+     is `display: inline` by default. How you might get the links to stack one 
+     above the other?
 8. Visit `localhost:3000/questions/1/edit` and test out your new edit form. Upon 
    submission you should be redirected to the updated question's show page.
 
@@ -159,10 +165,12 @@ should be able to successfully remove a question.
     - Set the method to `POST` or `GET`.
 2. Similar to the `edit` form, the `delete` form requiers a HTML method other 
    than `POST` or `GET`. 
-   - inside the form add a hidden input that sets the form's method to `DELETE`
-3. Add a `button` of type `submit` with the value of `Delete Question`.
+   - Inside the form add a hidden input that sets the form's method to `DELETE`.
+3. Add a `input` of type `submit` with the value of `Delete Question`.
 4. Visit `localhost:3000` and go to a question show page to test out your new
    delete button.
+   - Upon a successful deletion of a question you should be redirected to the  
+     question's index page and see that the deleted quesiton is no longer there.
 
 Similar to the editability of a questions all questions can be deleted at any 
 time. Again you will learn how to restrict this functionality next week.
